@@ -12,8 +12,6 @@ Checkout the [DEMO](https://duder-onomy.github.io/ember-resize-aware/)
 Simplified and updated version of `ember-resize`.
 Provides a mixin that you can use on your components, your components will have a `didResize` event called on them when appropriate.
 
-Uses [ember-singularity](https://github.com/trentmwillis/ember-singularity) under the hood for efficient and massively gangster event handling.
-
 Installation
 ------------------------------------------------------------------------------
 

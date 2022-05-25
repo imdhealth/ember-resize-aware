@@ -6,7 +6,6 @@ import { tryInvoke } from '@ember/utils';
 import Ember from 'ember';
 
 export default Mixin.create({
-  unifiedEventHandler: service(),
 
   didResize(/*width, height*/) {}, // Overridden in subclass
   debounceRate: 200, // Overridden in subclass
@@ -17,12 +16,12 @@ export default Mixin.create({
   didInsertElement(...args) {
     this._super(...args);
     this._handleResizeEvent = this._handleResizeEvent.bind(this);
-    scheduleOnce('afterRender', this, () => get(this, 'unifiedEventHandler').register('window', 'resize', this._handleResizeEvent));
+    scheduleOnce('afterRender', this, () => window.addEventListener("resize", this._handleResizeEvent));
   },
 
   willDestroyElement(...args) {
     this._super(...args);
-    get(this, 'unifiedEventHandler').unregister('window', 'resize', this._handleResizeEvent);
+    window.removeEventListener("resize", this._handleResizeEvent)
   },
 
   _handleResizeEvent() {
